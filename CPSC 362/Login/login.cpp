@@ -122,7 +122,7 @@ void register_user()
 {
     string username = get_username();
     string password = get_password();
-    save_user(firstname, lastname, username, password);
+    save_user(username, password);
 }
 
 void register_employer()
@@ -135,16 +135,20 @@ void register_employer()
 
 void save_user(const string &username, const string &password)
 {
+    ofstream file;
+    file.open("user.txt", ios_base::app);
     
-    string filename = username + ".txt";
-    ofstream file(filename);
-    file << password << "\n";
+    file << username << " " << password << "\n";
+    
+    file.close();
 }
 
 void save_employer(const string &companyName, const string &username, const string &password)
 {
-    string filename = username + ".txt";
-    ofstream file(filename);
-    file << companyName << "\n";
-    file << password << "\n";
+    ofstream file;
+    file.open("employer.txt", ios_base::app);
+    
+    file << companyName << " " << username << " " << password << "\n";
+    
+    file.close();
 }
