@@ -88,8 +88,7 @@ void login_user()
     ifstream file("user.txt", ios::in);
     string usn;
     string pswd;
-    //bool validate_Login_User;
-    //do{
+
             string username = get_input <string> ("Username: ");
             string password = get_input <string> ("Password: ");
     
@@ -105,16 +104,6 @@ void login_user()
         else
             cout << "INVALID INPUT. ENTER CORRECT USERNAME/PASSWORD!.\n";
     }
-            /*validate_Login_User = validateLoginUser(usn,pswd);
-
-            if(validate_Login_User)
-            {
-                cout << "You are being logged in!" "\n";
-            }
-            else
-                cout << "INVALID INPUT. ENTER CORRECT USERNAME/PASSWORD!.\n";
-
-        }while(!validate_Login_User);*/
 }
 
 void login_employer()
@@ -123,8 +112,7 @@ void login_employer()
     string cmpny;
     string usn;
     string pswd;
-    //bool validate_Login_Employer;
-    //do{
+    
     string company  = get_input <string> ("Company : ");
     string username = get_input <string> ("Username: ");
     string password = get_input <string> ("Password: ");
@@ -141,66 +129,8 @@ void login_employer()
         else
             cout << "INVALID INPUT. ENTER CORRECT USERNAME/PASSWORD!.\n";
     }
-            /*validate_Login_Employer = validateLoginEmployer(cmpny,usn,pswd);
-
-            if(validate_Login_Employer)
-            {
-                cout << "You are being logged in!" "\n";
-            }
-            else
-                cout << "INVALID INPUT. ENTER CORRECT USERNAME/PASSWORD!.\n";
-
-        }while(!validate_Login_Employer);*/
 }
-
-/*bool validateLoginUser(const string &username, const string &password)
-{
-    bool valid = false;
-    ifstream data;
-    data.open("user.txt");
-    while (data >> username >> password) {
-        if (usn == username && pswd == password)
-        {
-            valid = true;
-            break;
-        }
-    }
-
-    if(valid)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-    data.close();
-}
-
-bool validateLoginEmployer(const string &companyName, const string &username, const string &password)
-{
-    bool valid = false;
-    ifstream data;
-    data.open("employer.txt");
-    while (data >> company >> username >> password) {
-        if (cmpny == company && usn == username && pswd == password)
-        {
-            valid = true;
-            break;
-        }
-    }
-
-    if(valid)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-    data.close();
-}*/
-
+           
 void main_menu()
 {
     int choice;
