@@ -1,4 +1,6 @@
 #include <fstream>
+#include <iomanip>
+#include <cstdlib>
 #include <iostream>
 #include <limits>
 #include <string>
@@ -14,6 +16,9 @@ string get_companyName();
 
 void save_user(const string &username, const string &password);
 void save_employer(const string &companyName, const string &username, const string &password);
+
+bool validateLoginUser(const string &username, const string &password);
+bool validateLoginEmployer(const string &companyName, const string &username, const string &password);
 
 void login_user();
 void login_employer();
@@ -80,13 +85,121 @@ string get_companyName()
 
 void login_user()
 {
-    cout << "You are being logged in!" "\n";
+    ifstream file("user.txt", ios::in);
+    string usn;
+    string pswd;
+    //bool validate_Login_User;
+    //do{
+            string username = get_input <string> ("Username: ");
+            string password = get_input <string> ("Password: ");
+    
+    while(!file.eof())
+    {
+        file >> usn >> pswd;
+        
+        if(username.compare(usn) == 0 && password.compare(pswd) == 0)
+        {
+            cout << "You are being logged in!" "\n";
+            exit(1);
+        }
+        else
+            cout << "INVALID INPUT. ENTER CORRECT USERNAME/PASSWORD!.\n";
+    }
+            /*validate_Login_User = validateLoginUser(usn,pswd);
+
+            if(validate_Login_User)
+            {
+                cout << "You are being logged in!" "\n";
+            }
+            else
+                cout << "INVALID INPUT. ENTER CORRECT USERNAME/PASSWORD!.\n";
+
+        }while(!validate_Login_User);*/
 }
 
 void login_employer()
 {
-    cout << "You are being logged in!" "\n";
+    ifstream file("user.txt", ios::in);
+    string cmpny;
+    string usn;
+    string pswd;
+    //bool validate_Login_Employer;
+    //do{
+    string company  = get_input <string> ("Company : ");
+    string username = get_input <string> ("Username: ");
+    string password = get_input <string> ("Password: ");
+    
+    while(!file.eof())
+    {
+        file >> cmpny >> usn >> pswd;
+        
+        if(company.compare(cmpny) == 0 && username.compare(usn) == 0 && password.compare(pswd) == 0)
+        {
+            cout << "You are being logged in!" "\n";
+            exit(1);
+        }
+        else
+            cout << "INVALID INPUT. ENTER CORRECT USERNAME/PASSWORD!.\n";
+    }
+            /*validate_Login_Employer = validateLoginEmployer(cmpny,usn,pswd);
+
+            if(validate_Login_Employer)
+            {
+                cout << "You are being logged in!" "\n";
+            }
+            else
+                cout << "INVALID INPUT. ENTER CORRECT USERNAME/PASSWORD!.\n";
+
+        }while(!validate_Login_Employer);*/
 }
+
+/*bool validateLoginUser(const string &username, const string &password)
+{
+    bool valid = false;
+    ifstream data;
+    data.open("user.txt");
+    while (data >> username >> password) {
+        if (usn == username && pswd == password)
+        {
+            valid = true;
+            break;
+        }
+    }
+
+    if(valid)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    data.close();
+}
+
+bool validateLoginEmployer(const string &companyName, const string &username, const string &password)
+{
+    bool valid = false;
+    ifstream data;
+    data.open("employer.txt");
+    while (data >> company >> username >> password) {
+        if (cmpny == company && usn == username && pswd == password)
+        {
+            valid = true;
+            break;
+        }
+    }
+
+    if(valid)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+    data.close();
+}*/
 
 void main_menu()
 {
@@ -114,8 +227,10 @@ void main_menu()
             case 4:
                 register_employer();
                 break;
+            case 5:
+                exit(1);
         }
-    }while(choice == '5');
+    }while(choice != '5');
 }
 
 void register_user()
